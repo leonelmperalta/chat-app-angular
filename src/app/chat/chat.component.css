@@ -1,0 +1,14 @@
+.chat-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 50vh;
+}
+
+.chat-container::-webkit-scrollbar {
+  width: 7px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+  background-color: rgb(88, 88, 88);
+  border-radius: 5px;
+}

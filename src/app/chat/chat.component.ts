@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Client } from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 import { Message } from '../models/message';
@@ -6,14 +12,17 @@ import { Message } from '../models/message';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.css'],
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewChecked {
   private client: Client;
   connected: boolean;
   message: Message = new Message();
   messages: Message[] = [];
   writing: string;
   clientId: string;
+  @ViewChild('scrollChat') scrollContainer: ElementRef;
+  scrolltop: number | null = null;
 
   constructor() {
     this.clientId =
@@ -21,6 +30,9 @@ export class ChatComponent implements OnInit {
       new Date().getUTCMilliseconds() +
       '-' +
       Math.random().toString(36).substr(2);
+  }
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
   }
 
   ngOnInit(): void {
@@ -98,5 +110,12 @@ export class ChatComponent implements OnInit {
       destination: '/app/writing',
       body: this.message.username,
     });
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.scrollContainer.nativeElement.scrollTop =
+        this.scrollContainer.nativeElement.scrollHeight;
+    } catch (err) {}
   }
 }

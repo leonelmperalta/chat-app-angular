@@ -32,34 +32,13 @@
     </ul>
   </div>
   <div
-    class="card-body"
-    style="overflow-y: scroll; height: 50vh"
+    class="card-body chat-container"
     *ngIf="connected"
+    [scrollTop]="scrolltop"
     #scrollChat
-    [scrollTop]="scrollChat.scrollHeight"
   >
     <ul class="list-group list-group-flush">
-      <li
-        class="list-group-item list-group-item-dark"
-        *ngFor="let message of messages"
-      >
-        <span *ngIf="message.type === 'NEW_USER'"
-          >{{ message.date | date: "shortTime" }} @ {{ message.text }} :
-          <span [ngStyle]="{ color: message.color }">{{
-            message.username
-          }}</span></span
-        >
-        <span *ngIf="message.type === 'NEW_MESSAGE'">
-          <span>
-            {{ message.date | date: "shortTime" }} :
-            <span [ngStyle]="{ color: message.color }">{{
-              message.username
-            }}</span>
-          </span>
-          dice: <br />
-          {{ message.text }}
-        </span>
-      </li>
+      <app-message [messages]="messages"></app-message>
     </ul>
   </div>
   <div class="card-footer" *ngIf="connected">

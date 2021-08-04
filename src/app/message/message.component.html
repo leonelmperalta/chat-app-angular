@@ -1,0 +1,18 @@
+<li
+  class="list-group-item list-group-item-dark"
+  *ngFor="let message of messages"
+  @enterMessageTrigger
+>
+  <span *ngIf="message.type === 'NEW_USER'">
+    {{ message.date | date: "shortTime" }} @ {{ message.text }} :
+    <span [ngStyle]="{ color: message.color }">{{ message.username }} </span>
+  </span>
+  <span *ngIf="message.type === 'NEW_MESSAGE'">
+    <span>
+      {{ message.date | date: "shortTime" }} :
+      <span [ngStyle]="{ color: message.color }">{{ message.username }}</span>
+    </span>
+    dice: <br />
+    {{ message.text }}
+  </span>
+</li>
