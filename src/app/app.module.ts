@@ -7,9 +7,10 @@ import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
 
 @NgModule({
-  declarations: [AppComponent, ChatComponent, MessageComponent],
+  declarations: [AppComponent, ChatComponent, MessageComponent, ThemeSwitcherComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

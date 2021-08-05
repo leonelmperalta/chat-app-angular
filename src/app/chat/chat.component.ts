@@ -8,6 +8,7 @@ import {
 import { Client } from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 import { Message } from '../models/message';
+import Utils from '../utils/Utils';
 
 @Component({
   selector: 'app-chat',
@@ -21,6 +22,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   messages: Message[] = [];
   writing: string;
   clientId: string;
+  getTheme() {
+    return Utils.getThemeFromLocalStorage();
+  }
   @ViewChild('scrollChat') scrollContainer: ElementRef;
   scrolltop: number | null = null;
 

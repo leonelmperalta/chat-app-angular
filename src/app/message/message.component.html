@@ -1,5 +1,10 @@
 <li
-  class="list-group-item list-group-item-dark"
+  class="list-group-item"
+  [ngClass]="
+    getTheme() === 'dark'
+      ? ' list-group-item-dark'
+      : 'text-dark list-group-item-light'
+  "
   *ngFor="let message of messages"
   @enterMessageTrigger
 >

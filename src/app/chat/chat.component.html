@@ -1,4 +1,7 @@
-<div class="card text-white bg-dark my-4 mx-4">
+<div
+  class="card my-4 mx-4"
+  [ngClass]="getTheme() === 'dark' ? 'text-white bg-dark' : 'bg-light'"
+>
   <div class="card-header">
     <ul class="nav nav-pills card-header-pills">
       <li class="nav-item mr-2 mt-1" *ngIf="!connected">
